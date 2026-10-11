@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stock Watchlist</title>
+    <style>
+      :root {
+        --bg: #f5f7fb;
+        --panel: #ffffff;
+        --header: #0f172a;
+        --muted: #64748b;
+        --row-alt: #f8fafc;
+        --border: #e2e8f0;
+        --green: #16a34a;
+        --red: #dc2626;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: #0f172a;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .wrap {
+        max-width: 1400px;
+        margin: 32px auto;
+        padding: 20px;
+      }
+
+      .title {
+        font-size: 28px;
+        font-weight: 700;
+        margin-bottom: 16px;
+      }
+
+      .table-wrap {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow: auto;
+        box-shadow: 0 8px 18px rgba(15, 23, 42, 0.06);
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 1200px;
+      }
+
+      th, td {
+        padding: 10px 12px;
+        border-bottom: 1px solid var(--border);
+        text-align: left;
+        font-size: 13px;
+      }
+
+      thead th {
+        background: var(--header);
+        color: #fff;
+        font-size: 12px;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+      }
+
+      tbody tr:nth-child(even) {
+        background: var(--row-alt);
+      }
+
+      tbody tr:hover {
+        background: #eef6ff;
+      }
+
+      .num {
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .positive {
+        color: var(--green);
+        font-weight: 700;
+      }
+
+      .negative {
+        color: var(--red);
+        font-weight: 700;
+      }
+
+      @media (max-width: 768px) {
+        .title {
+          font-size: 22px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="title">Stock Watchlist</div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Symbol</th>
+              <th>Industry</th>
+              <th>Reported</th>
+              <th>P/E</th>
+              <th>P/B</th>
+              <th>ROE</th>
+              <th>Close</th>
+              <th>12m mom</th>
+              <th>Weight</th>
+              <th>Shares</th>
+              <th>Amount</th>
+              <th>Stop</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>AEROFLEX</td>
+              <td>Capital Goods</td>
+              <td>2024-12-31</td>
+              <td class="num">107.6</td>
+              <td class="num">22.7</td>
+              <td>21%</td>
+              <td class="num">520.50</td>
+              <td class="positive num">232.9%</td>
+              <td class="num">2.16%</td>
+              <td class="num">20</td>
+              <td class="num">10,410</td>
+              <td class="num">390.38</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>SAKAR</td>
+              <td>Unclassified</td>
+              <td>2024-12-31</td>
+              <td class="num">—</td>
+              <td class="num">—</td>
+              <td>—</td>
+              <td class="num">1,011.50</td>
+              <td class="positive num">228.4%</td>
+              <td class="num">2.16%</td>
+              <td class="num">10</td>
+              <td class="num">10,115</td>
+              <td class="num">758.62</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>SKYGOLD</td>
+              <td>Consumer Durables</td>
+              <td>2024-12-31</td>
+              <td class="num">52.2</td>
+              <td class="num">36.0</td>
+              <td>69%</td>
+              <td class="num">921.00</td>
+              <td class="positive num">206.1%</td>
+              <td class="num">2.62%</td>
+              <td class="num">14</td>
+              <td class="num">12,894</td>
+              <td class="num">690.75</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>SANSERA</td>
+              <td>Automobile and Auto Components</td>
+              <td>2024-12-31</td>
+              <td class="num">74.2</td>
+              <td class="num">16.3</td>
+              <td>22%</td>
+              <td class="num">4,124.70</td>
+              <td class="positive num">200.2%</td>
+              <td class="num">2.66%</td>
+              <td class="num">3</td>
+              <td class="num">12,374</td>
+              <td class="num">3,093.52</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>WELCORP</td>
+              <td>Capital Goods</td>
+              <td>2024-12-31</td>
+              <td class="num">71.6</td>
+              <td class="num">17.1</td>
+              <td>24%</td>
+              <td class="num">2,640.40</td>
+              <td class="positive num">200.2%</td>
+              <td class="num">2.00%</td>
+              <td class="num">3</td>
+              <td class="num">7,921</td>
+              <td class="num">1,980.30</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>CPPLUS</td>
+              <td>Capital Goods</td>
+              <td>none</td>
+              <td class="num">93.6</td>
+              <td class="num">—</td>
+              <td>—</td>
+              <td class="num">4,185.20</td>
+              <td class="positive num">188.2%</td>
+              <td class="num">2.65%</td>
+              <td class="num">3</td>
+              <td class="num">12,556</td>
+              <td class="num">3,138.90</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>PRECWIRE</td>
+              <td>Capital Goods</td>
+              <td>2024-12-31</td>
+              <td class="num">53.2</td>
+              <td class="num">17.2</td>
+              <td>32%</td>
+              <td class="num">482.70</td>
+              <td class="positive num">179.1%</td>
+              <td class="num">1.83%</td>
+              <td class="num">18</td>
+              <td class="num">8,689</td>
+              <td class="num">362.02</td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>THANGAMAYL</td>
+              <td>Consumer Durables</td>
+              <td>2024-12-31</td>
+              <td class="num">43.2</td>
+              <td class="num">32.8</td>
+              <td>76%</td>
+              <td class="num">4,889.50</td>
+              <td class="positive num">178.9%</td>
+              <td class="num">2.13%</td>
+              <td class="num">2</td>
+              <td class="num">9,779</td>
+              <td class="num">3,667.12</td>
+            </tr>
+            <tr>
+              <td>9</td>
+              <td>ATHERENERG</td>
+              <td>Automobile and Auto Components</td>
+              <td>none</td>
+              <td class="num">-163.0</td>
+              <td class="num">—</td>
+              <td>—</td>
+              <td class="num">1,434.40</td>
+              <td class="positive num">176.9%</td>
+              <td class="num">2.27%</td>
+              <td class="num">7</td>
+              <td class="num">10,041</td>
+              <td class="num">1,075.80</td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>SHREEJISPG</td>
+              <td>Services</td>
+              <td>none</td>
+              <td class="num">64.9</td>
+              <td class="num">—</td>
+              <td>—</td>
+              <td class="num">811.80</td>
+              <td class="positive num">171.5%</td>
+              <td class="num">3.27%</td>
+              <td class="num">20</td>
+              <td class="num">16,236</td>
+              <td class="num">608.85</td>
+            </tr>
+            <tr>
+              <td>11</td>
+              <td>RPEL</td>
+              <td>Capital Goods</td>
+              <td>2024-12-31</td>
+              <td class="num">230.1</td>
+              <td class="num">48.1</td>
+              <td>21%</td>
+              <td class="num">1,734.10</td>
+              <td class="positive num">168.2%</td>
+              <td class="num">1.99%</td>
+              <td class="num">5</td>
+              <td class="num">8,671</td>
+              <td class="num">1,300.57</td>
+            </tr>
+            <tr>
+              <td>12</td>
+              <td>KIRLOSENG</td>
+              <td>Capital Goods</td>
+              <td>2024-12-31</td>
+              <td class="num">70.5</td>
+              <td class="num">10.9</td>
+              <td>16%</td>
+              <td class="num">2,210.40</td>
+              <td class="positive num">154.7%</td>
+              <td class="num">2.56%</td>
+              <td class="num">5</td>
+              <td class="num">11,052</td>
+              <td class="num">1,657.80</td>
+            </tr>
+            <tr>
+              <td>13</td>
+              <td>ACUTAAS</td>
+              <td>Healthcare</td>
+              <td>2024-12-31</td>
+              <td class="num">67.6</td>
+              <td class="num">22.3</td>
+              <td>33%</td>
+              <td class="num">3,160.60</td>
+              <td class="positive num">153.0%</td>
+              <td class="num">2.78%</td>
+              <td class="num">4</td>
+              <td class="num">12,642</td>
+              <td class="num">2,370.45</td>
+            </tr>
+            <tr>
+              <td>14</td>
+              <td>HAPPYFORGE</td>
+              <td>Capital Goods</td>
+              <td>2024-12-31</td>
+              <td class="num">66.5</td>
+              <td class="num">12.7</td>
+              <td>19%</td>
+              <td class="num">1,922.60</td>
+              <td class="positive num">150.3%</td>
+              <td class="num">3.06%</td>
+              <td class="num">7</td>
+              <td class="num">13,458</td>
+              <td class="num">1,441.95</td>
+            </tr>
+            <tr>
+              <td>15</td>
+              <td>YASHO</td>
+              <td>Chemicals</td>
+              <td>2024-12-31</td>
+              <td class="num">99.8</td>
+              <td class="num">17.7</td>
+              <td>18%</td>
+              <td class="num">4,125.00</td>
+              <td class="positive num">149.6%</td>
+              <td class="num">1.66%</td>
+              <td class="num">2</td>
+              <td class="num">8,250</td>
+              <td class="num">3,093.75</td>
+            </tr>
+            <tr>
+              <td>16</td>
+              <td>RPTECH</td>
+              <td>Information Technology</td>
+              <td>2024-12-31</td>
+              <td class="num">18.2</td>
+              <td class="num">3.3</td>
+              <td>18%</td>
+              <td class="num">889.70</td>
+              <td class="positive num">148.9%</td>
+              <td class="num">2.42%</td>
+              <td class="num">13</td>
+              <td class="num">11,566</td>
+              <td class="num">667.28</td>
+            </tr>
+            <tr>
+              <td>17</td>
+              <td>PARAS</td>
+              <td>Capital Goods</td>
+              <td>2024-12-31</td>
+              <td class="num">130.2</td>
+              <td class="num">24.3</td>
+              <td>19%</td>
+              <td class="num">1,267.90</td>
+              <td class="positive num">143.8%</td>
+              <td class="num">2.72%</td>
+              <td class="num">10</td>
+              <td class="num">12,679</td>
+              <td class="num">950.92</td>
+            </tr>
+            <tr>
+              <td>18</td>
+              <td>MOREPENLAB</td>
+              <td>Healthcare</td>
+              <td>2024-12-31</td>
+              <td class="num">52.1</td>
+              <td class="num">5.1</td>
+              <td>10%</td>
+              <td class="num">129.55</td>
+              <td class="positive num">143.3%</td>
+              <td class="num">1.53%</td>
+              <td class="num">58</td>
+              <td class="num">7,514</td>
+              <td class="num">97.16</td>
+            </tr>
+            <tr>
+              <td>19</td>
+              <td>GRWRHITECH</td>
+              <td>Capital Goods</td>
+              <td>2024-12-31</td>
+              <td class="num">43.4</td>
+              <td class="num">7.8</td>
+              <td>18%</td>
+              <td class="num">6,997.50</td>
+              <td class="positive num">142.0%</td>
+              <td class="num">3.34%</td>
+              <td class="num">2</td>
+              <td class="num">13,995</td>
+              <td class="num">5,248.12</td>
+            </tr>
+            <tr>
+              <td>20</td>
+              <td>LAURUSLABS</td>
+              <td>Healthcare</td>
+              <td>2024-12-31</td>
+              <td class="num">119.8</td>
+              <td class="num">24.5</td>
+              <td>20%</td>
+              <td class="num">2,036.60</td>
+              <td class="positive num">139.9%</td>
+              <td class="num">4.15%</td>
+              <td class="num">10</td>
+              <td class="num">20,366</td>
+              <td class="num">1,527.45</td>
+            </tr>
+            <tr>
+              <td>21</td>
+              <td>BAJAJCON</td>
+              <td>Fast Moving Consumer Goods</td>
+              <td>2024-12-31</td>
+              <td class="num">27.8</td>
+              <td class="num">8.5</td>
+              <td>31%</td>
+              <td class="num">506.95</td>
+              <td class="positive num">134.8%</td>
+              <td class="num">2.63%</td>
+              <td class="num">25</td>
+              <td class="num">12,674</td>
+              <td class="num">380.21</td>
+            </tr>
+            <tr>
+              <td>22</td>
+              <td>CYIENTDLM</td>
+              <td>Capital Goods</td>
+              <td>2024-12-31</td>
+              <td class="num">105.3</td>
+              <td class="num">6.9</td>
+              <td>7%</td>
+              <td class="num">952.35</td>
+              <td class="positive num">134.7%</td>
+              <td class="num">2.06%</td>
+              <td class="num">10</td>
+              <td class="num">9,524</td>
+              <td class="num">714.26</td>
+            </tr>
+            <tr>
+              <td>23</td>
+              <td>SGMART</td>
+              <td>Metals &amp; Mining</td>
+              <td>none</td>
+              <td class="num">109.0</td>
+              <td class="num">8.7</td>
+              <td>8%</td>
+              <td class="num">775.60</td>
+              <td class="positive num">133.3%</td>
+              <td class="num">2.93%</td>
+              <td class="num">18</td>
+              <td class="num">13,961</td>
+              <td class="num">581.70</td>
+            </tr>
+            <tr>
+              <td>24</td>
+              <td>WHEELS</td>
+              <td>Automobile and Auto Components</td>
+              <td>2024-12-31</td>
+              <td class="num">—</td>
+              <td class="num">—</td>
+              <td>17%</td>
+              <td class="num">2,207.20</td>
+              <td class="positive num">130.8%</td>
+              <td class="num">1.85%</td>
+              <td class="num">4</td>
+              <td class="num">8,829</td>
+              <td class="num">1,655.40</td>
+            </tr>
+            <tr>
+              <td>25</td>
+              <td>MANINDS</td>
+              <td>Capital Goods</td>
+              <td>2024-12-31</td>
+              <td class="num">23.5</td>
+              <td class="num">4.3</td>
+              <td>18%</td>
+              <td class="num">867.90</td>
+              <td class="positive num">129.5%</td>
+              <td class="num">1.84%</td>
+              <td class="num">10</td>
+              <td class="num">8,679</td>
+              <td class="num">650.92</td>
+            </tr>
+            <tr>
+              <td>26</td>
+              <td>TMB</td>
+              <td>Financial Services</td>
+              <td>2024-12-31</td>
+              <td class="num">9.7</td>
+              <td class="num">1.7</td>
+              <td>17%</td>
+              <td class="num">874.80</td>
+              <td class="positive num">126.4%</td>
+              <td class="num">3.02%</td>
+              <td class="num">17</td>
+              <td class="num">14,872</td>
+              <td class="num">656.10</td>
+            </tr>
+            <tr>
+              <td>27</td>
+              <td>AVALON</td>
+              <td>Capital Goods</td>
+              <td>2024-12-31</td>
+              <td class="num">156.9</td>
+              <td class="num">21.6</td>
+              <td>14%</td>
+              <td class="num">2,300.50</td>
+              <td class="positive num">123.6%</td>
+              <td class="num">1.96%</td>
+              <td class="num">4</td>
+              <td class="num">9,202</td>
+              <td class="num">1,725.38</td>
+            </tr>
+            <tr>
+              <td>28</td>
+              <td>UNIPARTS</td>
+              <td>Automobile and Auto Components</td>
+              <td>2024-12-31</td>
+              <td class="num">24.9</td>
+              <td class="num">6.8</td>
+              <td>27%</td>
+              <td class="num">757.95</td>
+              <td class="positive num">120.1%</td>
+              <td class="num">2.82%</td>
+              <td class="num">18</td>
+              <td class="num">13,643</td>
+              <td class="num">568.46</td>
+            </tr>
+            <tr>
+              <td>29</td>
+              <td>SENORES</td>
+              <td>Healthcare</td>
+              <td>2024-12-31</td>
+              <td class="num">366.9</td>
+              <td class="num">—</td>
+              <td>—</td>
+              <td class="num">1,320.00</td>
+              <td class="positive num">119.9%</td>
+              <td class="num">3.18%</td>
+              <td class="num">12</td>
+              <td class="num">15,840</td>
+              <td class="num">990.00</td>
+            </tr>
+            <tr>
+              <td>30</td>
+              <td>SPORTKING</td>
+              <td>Textiles</td>
+              <td>2024-12-31</td>
+              <td class="num">17.5</td>
+              <td class="num">3.0</td>
+              <td>17%</td>
+              <td class="num">196.45</td>
+              <td class="positive num">117.9%</td>
+              <td class="num">2.25%</td>
+              <td class="num">57</td>
+              <td class="num">11,198</td>
+              <td class="num">147.34</td>
+            </tr>
+            <tr>
+              <td>31</td>
+              <td>AETHER</td>
+              <td>Chemicals</td>
+              <td>2024-12-31</td>
+              <td class="num">123.8</td>
+              <td class="num">10.5</td>
+              <td>9%</td>
+              <td class="num">1,748.10</td>
+              <td class="positive num">117.7%</td>
+              <td class="num">3.26%</td>
+              <td class="num">9</td>
+              <td class="num">15,733</td>
+              <td class="num">1,311.07</td>
+            </tr>
+            <tr>
+              <td>32</td>
+              <td>MACPOWER</td>
+              <td>Unclassified</td>
+              <td>2024-12-31</td>
+              <td class="num">—</td>
+              <td class="num">—</td>
+              <td>—</td>
+              <td class="num">1,898.80</td>
+              <td class="positive num">117.6%</td>
+              <td class="num">1.97%</td>
+              <td class="num">5</td>
+              <td class="num">9,494</td>
+              <td class="num">1,424.10</td>
+            </tr>
+            <tr>
+              <td>33</td>
+              <td>SBC</td>
+              <td>Textiles</td>
+              <td>2024-12-31</td>
+              <td class="num">55.8</td>
+              <td class="num">35.8</td>
+              <td>64%</td>
+              <td class="num">62.43</td>
+              <td class="positive num">116.6%</td>
+              <td class="num">3.39%</td>
+              <td class="num">271</td>
+              <td class="num">16,919</td>
+              <td class="num">46.82</td>
+            </tr>
+            <tr>
+              <td>34</td>
+              <td>APARINDS</td>
+              <td>Unclassified</td>
+              <td>2024-12-31</td>
+              <td class="num">—</td>
+              <td class="num">—</td>
+              <td>—</td>
+              <td class="num">17,984.00</td>
+              <td class="positive num">113.7%</td>
+              <td class="num">2.67%</td>
+              <td class="num">0</td>
+              <td class="num">0</td>
+              <td class="num">13,488.00</td>
+            </tr>
+            <tr>
+              <td>35</td>
+              <td>IOLCP</td>
+              <td>Healthcare</td>
+              <td>2024-12-31</td>
+              <td class="num">34.0</td>
+              <td class="num">3.5</td>
+              <td>10%</td>
+              <td class="num">201.15</td>
+              <td class="positive num">107.4%</td>
+              <td class="num">2.08%</td>
+              <td class="num">51</td>
+              <td class="num">10,259</td>
+              <td class="num">150.86</td>
+            </tr>
+            <tr>
+              <td>36</td>
+              <td>ANTELOPUS</td>
+              <td>Oil, Gas &amp; Consumable Fuels</td>
+              <td>2024-12-31</td>
+              <td class="num">20.8</td>
+              <td class="num">6.4</td>
+              <td>31%</td>
+              <td class="num">1,101.50</td>
+              <td class="positive num">107.0%</td>
+              <td class="num">1.56%</td>
+              <td class="num">7</td>
+              <td class="num">7,711</td>
+              <td class="num">826.12</td>
+            </tr>
+            <tr>
+              <td>37</td>
+              <td>VINDHYATEL</td>
+              <td>Construction</td>
+              <td>2024-12-31</td>
+              <td class="num">51.1</td>
+              <td class="num">2.2</td>
+              <td>4%</td>
+              <td class="num">2,814.40</td>
+              <td class="positive num">105.8%</td>
+              <td class="num">1.81%</td>
+              <td class="num">3</td>
+              <td class="num">8,443</td>
+              <td class="num">2,110.80</td>
+            </tr>
+            <tr>
+              <td>38</td>
+              <td>STYLAMIND</td>
+              <td>Consumer Durables</td>
+              <td>2024-12-31</td>
+              <td class="num">35.1</td>
+              <td class="num">9.9</td>
+              <td>28%</td>
+              <td class="num">3,271.00</td>
+              <td class="positive num">105.6%</td>
+              <td class="num">3.32%</td>
+              <td class="num">5</td>
+              <td class="num">16,355</td>
+              <td class="num">2,453.25</td>
+            </tr>
+            <tr>
+              <td>39</td>
+              <td>MMFL</td>
+              <td>Automobile and Auto Components</td>
+              <td>2024-12-31</td>
+              <td class="num">16.9</td>
+              <td class="num">3.5</td>
+              <td>21%</td>
+              <td class="num">552.15</td>
+              <td class="positive num">105.2%</td>
+              <td class="num">2.65%</td>
+              <td class="num">23</td>
+              <td class="num">12,699</td>
+              <td class="num">414.11</td>
+            </tr>
+            <tr>
+              <td>40</td>
+              <td>PAISALO</td>
+              <td>Financial Services</td>
+              <td>2024-12-31</td>
+              <td class="num">24.6</td>
+              <td class="num">4.4</td>
+              <td>18%</td>
+              <td class="num">80.90</td>
+              <td class="positive num">104.8%</td>
+              <td class="num">2.82%</td>
+              <td class="num">174</td>
+              <td class="num">14,077</td>
+              <td class="num">60.68</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
